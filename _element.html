@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="poc-templatizer">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `poc-templatizer`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class PocTemplatizer extends Polymer.Element {
+      static get is() { return 'poc-templatizer'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'poc-templatizer'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PocTemplatizer.is, PocTemplatizer);
+  </script>
+</dom-module>

@@ -1,0 +1,61 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="poc-templatizer">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div id="content"></div>
+    <slod></slod>
+  </template>
+
+  <script>
+    /**
+     * `poc-templatizer`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class PocTemplatizer extends Polymer.mixinBehaviors([Polymer.Templatizer], Polymer.Element) {
+      static get is() { return 'poc-templatizer'; }
+      static get properties() {
+        return {
+          collection: {
+            type: Array,
+            value: [
+              {
+                name:'Tom',
+                age: '30'
+              },
+              {
+                name: 'Jerry',
+                age: '31'
+              }
+            ]
+          }
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        debugger;
+        var template = this.querySelector('template');
+        this.templatize(template);
+        var items = this.collection;
+        for (var i = 0; i < items.length; i++) {
+        // clone the template and bind with the model
+        var clone = this.stamp({ item: this.collection[i] });
+        // append clone.root to DOM instead
+        this.$.content.appendChild(clone.root);
+        }
+      }
+
+    }
+
+    window.customElements.define(PocTemplatizer.is, PocTemplatizer);
+  </script>
+</dom-module>
